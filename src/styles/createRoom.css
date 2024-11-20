@@ -1,0 +1,40 @@
+.main {
+  flex-direction: column;
+}
+
+.bodying {
+  position: relative;
+  top: -50px;
+  display: flex;
+  width: 700px;
+  height: 500px;
+  background-color: red;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.bodying form {
+  gap: 50px;
+}
+
+.Link-box {
+  height: 100px;
+  width: 300px;
+  background-color: aqua;
+}
+
+.footers {
+  display: flex;
+}
+
+.person {
+  height: 200px;
+  width: 100px;
+  background-color: red;
+  margin-right: 20px;
+}
+
+.in {
+  background-color: green;
+}

@@ -1,0 +1,24 @@
+.body {
+  background-color: aqua;
+  top: 15%;
+  width: 70%;
+  height: 70%;
+  position: absolute;
+  user-select: none;
+}
+
+.Rule-button {
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+  width: 50px;
+  border-radius: 30px;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
+}

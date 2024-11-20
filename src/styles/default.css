@@ -1,0 +1,10 @@
+html {
+  /* 전체 화면 사용하기*/
+  height: 100%;
+}
+body {
+  min-height: 100vh;
+}
+p {
+  color: red;
+}
