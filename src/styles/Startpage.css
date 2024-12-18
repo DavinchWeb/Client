@@ -1,29 +1,30 @@
 .button {
   border: none;
-  font-size: 20px;
+  font-size: 30px;
   width: 100px;
   height: 70px;
-  background-color: bisque;
-  margin-bottom: 30px;
   cursor: pointer;
+  background-color: white;
 }
 
 .main {
   display: flex;
   width: 100%;
   height: 100%;
-  background-color: lightcoral;
   justify-content: center;
   align-items: center;
+  background-color: white;
+  overflow: hidden;
 }
 
 .content {
   width: 500px;
-  height: 500px;
+  height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .title {
@@ -41,4 +42,143 @@
 h1,
 span button {
   user-select: none;
+}
+
+.logobox {
+  /*로고를 담은 box*/
+  width: 500px;
+  height: 437px;
+  overflow: hidden;
+  z-index: 100;
+  pointer-events: none; /*클릭 무시하기*/
+}
+
+.logo {
+  background-image: url("../assets/title.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  animation: logo 2s linear forwards;
+  z-index: 100;
+}
+
+.box {
+  position: relative;
+  background-color: white;
+  border: 2px solid black;
+  width: 120px;
+  height: 30px;
+}
+
+/* @keyframes test{
+  from {
+    transform: (-100, -100);
+  }
+  to {
+    transform: translate(0px, 100px);
+  }
+} */
+
+/* animation 설정 */
+@keyframes box-ani {
+  0% {
+    top: 0px;
+  }
+  100% {
+    top: 0;
+    height: 520px;
+  }
+}
+@keyframes box-ani2 {
+  0% {
+    bottom: 0px;
+  }
+  100% {
+    bottom: 0;
+    height: 520px;
+  }
+}
+
+@keyframes rule-ani {
+  0% {
+    top: -100px;
+  }
+  100% {
+    top: 5%;
+  }
+}
+@keyframes start-ani {
+  0% {
+    bottom: -100px;
+  }
+  100% {
+    bottom: 5%;
+  }
+}
+
+@keyframes logo {
+  0% {
+    opacity: 10%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.above {
+  /* 위쪽 박스 */
+  position: absolute;
+  top: -100px;
+  left: -70px;
+  animation: box-ani 2s linear forwards;
+  animation-delay: 3s;
+  border-top: none;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.below {
+  /* 아래쪽 박스 */
+  position: absolute;
+  bottom: -100px;
+  right: -70px;
+  animation: box-ani2 2s linear forwards;
+  border-bottom: none;
+  animation-delay: 3s;
+  z-index: 1;
+}
+
+.start {
+  /* start 위치 */
+  position: absolute;
+  bottom: -15%;
+  right: -35%;
+  animation: start-ani 2s linear forwards;
+  animation-delay: 3s;
+}
+
+.RULE {
+  /* RULE 위치 */
+  position: absolute;
+  top: -15%;
+  left: -35%;
+  animation: rule-ani 2s linear forwards;
+  animation-delay: 3s;
+}
+
+/* hover 설정 */
+.RULE:hover ~ .above {
+  background-color: black;
+}
+.below:hover {
+  background-color: black;
+}
+
+.start:hover ~ .below {
+  background-color: black;
+}
+.above:hover {
+  background-color: black;
 }
