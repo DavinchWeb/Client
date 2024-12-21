@@ -1,19 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "../styles/createRoom.css";
-import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 
 const CreateRoom = () => {
   const [numPeople, setNumPeople] = useState(2); // 초기값: 2명
   const [visible, setVisible] = useState(true);
   const [link, setLink] = useState("");
+  const [RoomNum, setRoomNum] = useState();
   const sendData = () => {
     const data = { HeadCount: { numPeople } };
     axios
       .post("/create", data)
       .then((response) => {
         if (response.data && response.data.link) {
-          // 서버에서 링크를 전달했다고 가정
           console.log("Game room link:", response.data.link);
         } else {
           console.error("No link received in response");
@@ -23,31 +22,33 @@ const CreateRoom = () => {
         console.error("Error creating game room:", error);
       });
   };
-  // https://3417856e-8e67-45d9-9f14-16de685d94fe.mock.pstmn.io  목서버 주소
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const roomId = uuidv4();
     console.log(`선택된 인원: ${numPeople}`);
-    // const rand = Math.floor(Math.random() * 100); // 1~100사이 값이 들어감
-    //http://127.0.0.1:3030/game?Room=${roomId}
-    const RoomLink = `http://localhost:3000/game?Room=${roomId}`; // 링크 만들기
-    setLink(RoomLink);
     setVisible(false);
     console.log(`선택된 인원: ${numPeople}`);
-    console.log(`생성된 링크: ${RoomLink}`);
 
     try {
       const response = await axios.post(
-        "https://3417856e-8e67-45d9-9f14-16de685d94fe.mock.pstmn.io/create",
+        "https://8257c5eb-a596-4cff-830a-9f9d274ae206.mock.pstmn.io/create",
         {
-          numPeople, // 인원수
+          numPeople,
         }
       );
-      console.log("백엔드", response.data);
-    } catch (error) {
-      console.error("오류", error);
+
+      console.log(response.data.RoomNum);
+      setRoomNum(response.data.RoomNum);
+    } catch {
+      console.log("오류");
     }
   };
+
+  useMemo(() => {
+    if (RoomNum) {
+      const RoomLink = `http://localhost:3000/game?Room=${RoomNum}`;
+      setLink(RoomLink);
+    }
+  }, [RoomNum]);
 
   const handSelectChan = (e) => {
     setNumPeople(Number(e.target.value));

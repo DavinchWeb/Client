@@ -1,0 +1,121 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.contain {
+  margin-top: 5%;
+  width: 80%;
+  height: 100%;
+}
+
+.select {
+  background-color: black;
+  color: white;
+}
+
+.box {
+  width: 200%;
+  height: 15%;
+  background-color: white;
+  border: 2px black solid;
+  user-select: none;
+  cursor: pointer;
+}
+
+.two_div {
+  margin-left: -100%;
+  transform: rotate(-60deg);
+  animation: dropAndRotate2 2s linear forwards;
+  box-shadow: 5px 5px gray;
+  animation-delay: 0.2s;
+}
+.three_div {
+  margin-left: -105%;
+  transform: rotate(-60deg);
+  animation: dropAndRotate3 2s linear forwards;
+  animation-delay: 0.1s;
+  box-shadow: 5px 5px gray;
+}
+.four_div {
+  margin-left: -110%;
+  transform: rotate(-60deg);
+  animation: dropAndRotate4 2s linear forwards;
+  box-shadow: 5px 5px gray;
+}
+
+.box span {
+  float: right;
+  font-size: 10vh;
+  font-weight: bold;
+  margin-right: 5%;
+}
+
+@keyframes dropAndRotate2 {
+  0% {
+    transform: rotate(-60deg); /* 위에서 약간 회전된 상태로 시작 */
+  }
+  50% {
+    transform: rotate(9deg); /* 튀어오르며 반대 방향으로 회전 */
+  }
+  100% {
+    transform: rotate(4deg); /* 제자리에서 정렬 */
+  }
+}
+
+@keyframes dropAndRotate3 {
+  0% {
+    transform: rotate(-60deg); /* 위에서 약간 회전된 상태로 시작 */
+  }
+  50% {
+    transform: rotate(10deg); /* 튀어오르며 반대 방향으로 회전 */
+  }
+  100% {
+    transform: rotate(6deg); /* 제자리에서 정렬 */
+  }
+}
+
+@keyframes dropAndRotate4 {
+  0% {
+    transform: rotate(-60deg); /* 위에서 약간 회전된 상태로 시작 */
+  }
+  50% {
+    transform: rotate(12deg); /* 튀어오르며 반대 방향으로 회전 */
+  }
+  100% {
+    transform: rotate(8deg); /* 제자리에서 정렬 */
+  }
+}
+
+.circle1 {
+  position: absolute;
+  width: 70%;
+  height: 100%;
+  left: 10%;
+  top: 0%;
+  bottom: 0%;
+  background-image: url("../assets/circle.png");
+  background-size: 100% 100%; /* 이미지가 요소 내에서 크기에 맞게 조정됨 */
+  background-repeat: no-repeat; /* 배경이 반복되지 않도록 */
+}
+
+.box:active {
+  background-color: black;
+  color: white;
+}
+
+.start {
+  position: absolute;
+  right: 25%;
+  bottom: 20%;
+  font-size: 5vh;
+  font-weight: bold;
+  transform: rotate(15deg);
+  user-select: none;
+}

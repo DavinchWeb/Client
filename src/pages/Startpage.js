@@ -31,7 +31,7 @@ const Startpage = () => {
         <div className="logobox">
           <div className="logo"></div>
         </div>
-        <Link to="/createRoom">
+        <Link to="/select">
           <button className="start button">Start!</button>
           <div className="below box"></div>
         </Link>
