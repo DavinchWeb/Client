@@ -6,13 +6,13 @@ body {
   align-items: center;
   height: 100vh;
   width: 100%;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .contain {
-  margin-top: 5%;
   width: 80%;
   height: 100%;
+  overflow: hidden;
 }
 
 .select {
@@ -30,23 +30,23 @@ body {
 }
 
 .two_div {
-  margin-left: -100%;
+  margin-left: -101%;
   transform: rotate(-60deg);
-  animation: dropAndRotate2 2s linear forwards;
+  animation: dropAndRotate2 1.5s linear forwards;
   box-shadow: 5px 5px gray;
   animation-delay: 0.2s;
 }
 .three_div {
   margin-left: -105%;
   transform: rotate(-60deg);
-  animation: dropAndRotate3 2s linear forwards;
+  animation: dropAndRotate3 1.5s linear forwards;
   animation-delay: 0.1s;
   box-shadow: 5px 5px gray;
 }
 .four_div {
   margin-left: -110%;
   transform: rotate(-60deg);
-  animation: dropAndRotate4 2s linear forwards;
+  animation: dropAndRotate4 1.5s linear forwards;
   box-shadow: 5px 5px gray;
 }
 
@@ -71,25 +71,25 @@ body {
 
 @keyframes dropAndRotate3 {
   0% {
-    transform: rotate(-60deg); /* 위에서 약간 회전된 상태로 시작 */
+    transform: rotate(-60deg);
   }
   50% {
-    transform: rotate(10deg); /* 튀어오르며 반대 방향으로 회전 */
+    transform: rotate(10deg);
   }
   100% {
-    transform: rotate(6deg); /* 제자리에서 정렬 */
+    transform: rotate(6deg);
   }
 }
 
 @keyframes dropAndRotate4 {
   0% {
-    transform: rotate(-60deg); /* 위에서 약간 회전된 상태로 시작 */
+    transform: rotate(-60deg);
   }
   50% {
-    transform: rotate(12deg); /* 튀어오르며 반대 방향으로 회전 */
+    transform: rotate(12deg);
   }
   100% {
-    transform: rotate(8deg); /* 제자리에서 정렬 */
+    transform: rotate(8deg);
   }
 }
 

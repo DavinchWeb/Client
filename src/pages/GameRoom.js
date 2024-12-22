@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import styles from "../styles/GameRoom.module.css";
+
 const GameRoom = () => {
   const locate = useLocation();
   // const navi = useNavigate();
@@ -8,6 +10,7 @@ const GameRoom = () => {
   const roomNum = queParm.get("Room");
   const [Roomdata, setRoomData] = useState({});
   const Url = `https://8257c5eb-a596-4cff-830a-9f9d274ae206.mock.pstmn.io/game?Room=${roomNum}`;
+  const [MyCards, setMycards] = useState([]);
 
   // http://localhost:3000/game/?Room=${roomNum} http://127.0.0.1:3030/game?Room=${roomNum}
   useEffect(() => {
@@ -16,6 +19,7 @@ const GameRoom = () => {
         .get(Url)
         .then((response) => {
           setRoomData(response.data);
+          setMycards(response.data.user1.MyCard);
         })
         .catch((error) => {
           console.error("Error fetching room data:", error);
@@ -29,19 +33,16 @@ const GameRoom = () => {
       {Roomdata.userCount ? (
         <div>
           <p>유저 수: {Roomdata.userCount}</p>
-          {Roomdata.users &&
-            Object.keys(Roomdata.users).map((key) => (
-              <div key={key}>
-                <h3>{key}</h3>
-                <p>Cookie: {Roomdata.users[key]?.Cookie || "정보 없음"}</p>
-                <p>
-                  Cards:{" "}
-                  {Roomdata.users[key]?.cards
-                    ? Roomdata.users[key].cards.join(", ")
-                    : "카드 없음"}
-                </p>
-              </div>
-            ))}
+          <h1>
+            <p>
+              {MyCards.map((card, index) => (
+                <img
+                  className={styles.card}
+                  src={`/assets/cards/${card}.png`}
+                ></img>
+              ))}
+            </p>
+          </h1>
         </div>
       ) : (
         <p>데이터를 불러오는 중...</p>
