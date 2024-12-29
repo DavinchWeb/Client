@@ -1,10 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../styles/WaitRoom.module.css";
 
 const WaitRoom = () => {
-  const Url = `https://8257c5eb-a596-4cff-830a-9f9d274ae206.mock.pstmn.io/wait?Room=156`;
+  //const Url = `https://8257c5eb-a596-4cff-830a-9f9d274ae206.mock.pstmn.io/wait?Room=155`;
+  const locate = useLocation();
+  const queParm = new URLSearchParams(locate.search); // 쿼리 스트링
+  const roomNum = queParm.get("room");
+  const Url = `127.0.0.1:3030/wait?room=${roomNum}`;
   const [link, setLink] = useState("");
   const [message, setMessage] = useState("");
   const navi = useNavigate();
@@ -48,19 +52,19 @@ const WaitRoom = () => {
   useEffect(() => {
     setLink(window.location.href);
   }, []);
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     axios.get(Url).then((res) => {
-  //       console.log(res.data.gameStart);
-  //       setUserState(res.data.userCount);
-  //       if (res.data.gameStart) {
-  //         clearInterval(interval); // 게임 시작 시 Interval 해제
-  //         navi(`/game?Room=155`); // 게임 페이지로 이동
-  //       }
-  //     });
-  //   }, 5000);
-  //   return () => clearInterval(interval); // 인터벌 풀기
-  // }, [Url, navi]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      axios.get(Url).then((res) => {
+        console.log(res.data.gameStart);
+        setUserState(res.data.userCount);
+        if (res.data.gameStart) {
+          clearInterval(interval); // 게임 시작 시 Interval 해제
+          navi(`/game?room=155`); // 게임 페이지로 이동
+        }
+      });
+    }, 5000);
+    return () => clearInterval(interval); // 인터벌 풀기
+  }, [Url, navi]);
 
   return (
     <div className={styles.main}>
@@ -94,7 +98,6 @@ const WaitRoom = () => {
               if (link) {
                 navigator.clipboard.writeText(link);
                 setMessage("Copied!");
-
                 setTimeout(() => {
                   setMessage("");
                 }, 5000);

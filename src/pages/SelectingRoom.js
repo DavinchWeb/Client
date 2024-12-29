@@ -16,15 +16,12 @@ const SelectingRoom = () => {
     // 선택한 유저수를 보내고 방 번호를 받아오는 함수
     const data = { HeadCount: { UserCount } };
     axios
-      .post(
-        "https://8257c5eb-a596-4cff-830a-9f9d274ae206.mock.pstmn.io/selecting/create",
-        data
-      )
+      .post("http://127.0.0.1:3030/selection/creation", data)
       .then((response) => {
         if (response.data && response.data.RoomNum) {
           // data를 받아오면
           console.log("Game room link:", response.data.RoomNum);
-          navigate(`/wait?Room=${response.data.RoomNum}`);
+          navigate(`/wait?room=${response.data.RoomNum}`);
         } else {
           console.error("No link received in response");
         }

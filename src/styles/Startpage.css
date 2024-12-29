@@ -18,7 +18,6 @@
 }
 
 .content {
-  width: 500px;
   height: 100%;
   display: flex;
   flex-direction: row;

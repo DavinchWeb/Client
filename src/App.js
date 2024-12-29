@@ -11,7 +11,10 @@ function App() {
       <Route index element={<Startpaged></Startpaged>}></Route>
       <Route path="/createRoom" element={<CreateRoomd></CreateRoomd>}></Route>
       <Route path="/game" element={<GameRoom></GameRoom>}></Route>
-      <Route path="/select" element={<SelectingRoom></SelectingRoom>}></Route>
+      <Route
+        path="/selection"
+        element={<SelectingRoom></SelectingRoom>}
+      ></Route>
       <Route path="/wait" element={<WaitRoom></WaitRoom>}></Route>
     </Routes>
   );
