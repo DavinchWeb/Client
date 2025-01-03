@@ -15,7 +15,7 @@ function App() {
         path="/selection"
         element={<SelectingRoom></SelectingRoom>}
       ></Route>
-      <Route path="/wait" element={<WaitRoom></WaitRoom>}></Route>
+      <Route path="/room" element={<WaitRoom></WaitRoom>}></Route>
     </Routes>
   );
 }

@@ -5,7 +5,7 @@ import { DragControls } from "@react-three/drei";
 import Card from "./Cards";
 import Ground from "./Ground";
 
-const Davinch3D = ({ cards }) => {
+const Davinch3D = ({ cards, me }) => {
   const totalCards = cards.length;
   const offset = (totalCards - 1) / 2; // 중앙 기준으로 카드들을 배치
   const cardRefs = useRef([]);

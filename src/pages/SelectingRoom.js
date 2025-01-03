@@ -19,13 +19,25 @@ const SelectingRoom = () => {
     // 선택한 유저수를 보내고 방 번호를 받아오는 함수
     const data = { HeadCount: UserCount };
     axios
-      .post("http://127.0.0.1:3030/creation/room", data)
+      .post(
+        "https://8257c5eb-a596-4cff-830a-9f9d274ae206.mock.pstmn.io/creation/room",
+        data
+      ) //   /creation/room
       .then((response) => {
-        const parsedata = JSON.parse(response.data);
-        if (parsedata && parsedata.roomNum) {
+        // const parsedata = JSON.parse(response.data);
+        // if (parsedata && parsedata.roomNum) {
+        //   // data를 받아오면
+        //   console.log("Game room link:", parsedata.roomNum);
+        //   navigate(`/wait?room=${parsedata.roomNum}`);
+        // } else {
+        //   console.error("No link received in response");
+        // }
+        if (response.data && response.data.roomNum) {
           // data를 받아오면
-          console.log("Game room link:", parsedata.roomNum);
-          navigate(`/wait?room=${parsedata.roomNum}`);
+          console.log("Game room link:", response.data.roomNum);
+          navigate(`/room?num=${response.data.roomNum}`, {
+            state: { roomnum: response.data.roomNum },
+          });
         } else {
           console.error("No link received in response");
         }

@@ -4,15 +4,18 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../styles/WaitRoom.module.css";
 
 const WaitRoom = () => {
-  //const Url = `https://8257c5eb-a596-4cff-830a-9f9d274ae206.mock.pstmn.io/wait?Room=155`;
+  const Url = `https://8257c5eb-a596-4cff-830a-9f9d274ae206.mock.pstmn.io/room/ready`;
   const locate = useLocation();
-  const queParm = new URLSearchParams(locate.search); // 쿼리 스트링
-  const roomNum = queParm.get("room");
-  const Url = `127.0.0.1:3030/wait?room=${roomNum}`;
+  //const roomnum = locate.state?.roomnum;
+  const navi = useNavigate();
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const roomnum = urlParams.get("num"); // "123123"
   const [link, setLink] = useState("");
   const [message, setMessage] = useState("");
-  const navi = useNavigate();
   const [userState, setUserState] = useState(1);
+  const [textBox, settextBox] = useState("");
+
   const texts = [
     "처음 패에서 조커는 나오지 않습니다.",
     "다빈치 코드는 만 7세 이상부터 가능한 게임입니다.",
@@ -39,27 +42,31 @@ const WaitRoom = () => {
   ];
   const boxCount = 4;
   const boxes = Array.from({ length: boxCount }, (_, i) => i);
-  const [textBox, settextBox] = useState("");
+
+  const data = { roomNum: { roomnum } };
+
   useEffect(() => {
+    // 자동으로 글자 바꾸는 기능
     const sideRanText = setInterval(() => {
       const RanInex = Math.floor(Math.random() * 22);
       settextBox(texts[RanInex]);
-    }, 10000);
+    }, 5000);
     return () => {
       clearInterval(sideRanText);
     };
   });
   useEffect(() => {
+    // 링크 설정
     setLink(window.location.href);
   }, []);
   useEffect(() => {
     const interval = setInterval(() => {
-      axios.get(Url).then((res) => {
-        console.log(res.data.gameStart);
-        setUserState(res.data.userCount);
-        if (res.data.gameStart) {
+      axios.post(Url, data).then((res) => {
+        console.log(res.data.ready);
+        setUserState(res.data.currUserNum);
+        if (res.data.ready) {
           clearInterval(interval); // 게임 시작 시 Interval 해제
-          navi(`/game?room=155`); // 게임 페이지로 이동
+          navi(`/game`, { state: { num: roomnum } }); // 게임 페이지로 이동
         }
       });
     }, 5000);
@@ -86,7 +93,6 @@ const WaitRoom = () => {
           ))}
         </div>
         <div className={styles.circle}></div>
-
         <div className={styles.footer}>
           <span>GameRoom Link</span>
           <div className={styles.footer_content}>
