@@ -8,6 +8,8 @@ In the project directory, you can run:
 
 script : yarn install -> yarn start
 
+### node js v20.16.0
+
 ### `npm start`
 
 Runs the app in the development mode.\
