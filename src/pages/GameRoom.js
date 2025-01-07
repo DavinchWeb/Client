@@ -11,7 +11,7 @@ const GameRoom = () => {
   const roomnum = locate.state?.num;
   // const navi = useNavigate();
   const [Roomdata, setRoomData] = useState({});
-  const Url = `https://8257c5eb-a596-4cff-830a-9f9d274ae206.mock.pstmn.io/game/data`;
+  const Url = `/game/data`;
   const [MyCards, setMycards] = useState([]);
   const [otherCards, setOterCards] = useState([]);
 

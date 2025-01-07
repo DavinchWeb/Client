@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../styles/WaitRoom.module.css";
 
 const WaitRoom = () => {
-  const Url = `https://8257c5eb-a596-4cff-830a-9f9d274ae206.mock.pstmn.io/room/ready`;
+  const Url = `/room/ready`;
   const locate = useLocation();
   //const roomnum = locate.state?.roomnum;
   const navi = useNavigate();
@@ -43,7 +43,7 @@ const WaitRoom = () => {
   const boxCount = 4;
   const boxes = Array.from({ length: boxCount }, (_, i) => i);
 
-  const data = { roomNum: { roomnum } };
+  const data = { roomNum: Number(roomnum) };
 
   useEffect(() => {
     // 자동으로 글자 바꾸는 기능
