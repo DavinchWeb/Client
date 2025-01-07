@@ -29,12 +29,9 @@ const CreateRoom = () => {
     console.log(`선택된 인원: ${numPeople}`);
 
     try {
-      const response = await axios.post(
-        "https://8257c5eb-a596-4cff-830a-9f9d274ae206.mock.pstmn.io/create",
-        {
-          numPeople,
-        }
-      );
+      const response = await axios.post("/create", {
+        numPeople,
+      });
 
       console.log(response.data.RoomNum);
       setRoomNum(response.data.RoomNum);

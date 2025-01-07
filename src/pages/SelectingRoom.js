@@ -4,8 +4,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const SelectingRoom = () => {
-  const [UserCount, setUserCount] = useState(0); // 유저 수
+  const [UserCount, setUserCount] = useState(0);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (UserCount === 0) {
       // UserCount가 0이 아닐 때만 sendData 호출
@@ -15,7 +16,6 @@ const SelectingRoom = () => {
   }, [UserCount]);
 
   const sendData = () => {
-    // { count }
     // 선택한 유저수를 보내고 방 번호를 받아오는 함수
     const data = { HeadCount: UserCount };
     axios
@@ -24,7 +24,6 @@ const SelectingRoom = () => {
         const parsedata = JSON.parse(response.data);
         if (parsedata && parsedata.roomNum) {
           // data를 받아오면
-          console.log("Game room link:", parsedata.roomNum);
           navigate(`/room?num=${parsedata.roomNum}`);
         } else {
           console.error("No link received in response");
@@ -50,7 +49,7 @@ const SelectingRoom = () => {
       <div
         className={`${styles.two_div} ${styles.box}`}
         onClick={() => {
-          setUserCount(2); // { count: 2 } 안에 이걸 넣어서 UserCount를 안쓰고 할수 있을듯
+          setUserCount(2);
         }}
       >
         <span>Two</span>

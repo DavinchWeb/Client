@@ -1,16 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "../styles/WaitRoom.module.css";
 
 const WaitRoom = () => {
   const Url = `/room/ready`;
-  const locate = useLocation();
-  //const roomnum = locate.state?.roomnum;
   const navi = useNavigate();
-
   const urlParams = new URLSearchParams(window.location.search);
-  const roomnum = urlParams.get("num"); // "123123"
+  const roomnum = urlParams.get("num");
   const [link, setLink] = useState("");
   const [message, setMessage] = useState("");
   const [userState, setUserState] = useState(1);
@@ -43,8 +40,6 @@ const WaitRoom = () => {
   const boxCount = 4;
   const boxes = Array.from({ length: boxCount }, (_, i) => i);
 
-  const data = { roomNum: Number(roomnum) };
-
   useEffect(() => {
     // 자동으로 글자 바꾸는 기능
     const sideRanText = setInterval(() => {
@@ -55,11 +50,13 @@ const WaitRoom = () => {
       clearInterval(sideRanText);
     };
   });
+
   useEffect(() => {
-    // 링크 설정
     setLink(window.location.href);
   }, []);
+
   useEffect(() => {
+    const data = { roomNum: Number(roomnum) }; // wait폴링
     const interval = setInterval(() => {
       axios.post(Url, data).then((res) => {
         console.log(res.data.ready);
@@ -69,9 +66,9 @@ const WaitRoom = () => {
           navi(`/game`, { state: { num: roomnum } }); // 게임 페이지로 이동
         }
       });
-    }, 5000);
-    return () => clearInterval(interval); // 인터벌 풀기
-  }, [Url, navi]);
+    }, 100);
+    return () => clearInterval(interval);
+  }, [Url, navi, roomnum]);
 
   return (
     <div className={styles.main}>

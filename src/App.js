@@ -1,21 +1,20 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Startpaged from "./pages/Startpage";
 import CreateRoomd from "./pages/CreateRoom";
 import GameRoom from "./pages/GameRoom";
 import SelectingRoom from "./pages/SelectingRoom";
 import WaitRoom from "./pages/WaitRoom";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
     <Routes>
-      <Route index element={<Startpaged></Startpaged>}></Route>
-      <Route path="/createRoom" element={<CreateRoomd></CreateRoomd>}></Route>
-      <Route path="/game" element={<GameRoom></GameRoom>}></Route>
-      <Route
-        path="/selection"
-        element={<SelectingRoom></SelectingRoom>}
-      ></Route>
-      <Route path="/room" element={<WaitRoom></WaitRoom>}></Route>
+      <Route index element={<Startpaged />} />
+      <Route path="/createRoom" element={<CreateRoomd />} />
+      <Route path="/game" element={<GameRoom />} />
+      <Route path="/selection" element={<SelectingRoom />} />
+      <Route path="/room" element={<WaitRoom />} />
+      <Route path="*" element={<NotFound></NotFound>}></Route>;
     </Routes>
   );
 }

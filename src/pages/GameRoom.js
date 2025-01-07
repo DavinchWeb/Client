@@ -9,14 +9,12 @@ import My3DGame from "../3Dcomponents/Davinch3D";
 const GameRoom = () => {
   const locate = useLocation();
   const roomnum = locate.state?.num;
-  // const navi = useNavigate();
   const [Roomdata, setRoomData] = useState({});
   const Url = `/game/data`;
   const [MyCards, setMycards] = useState([]);
   const [otherCards, setOterCards] = useState([]);
 
-  const data = { roomNum: { roomnum } };
-  // http://localhost:3000/game/?Room=${roomNum} http://127.0.0.1:3030/game?Room=${roomNum}
+  const data = { roomNum: Number(roomnum) };
   useEffect(() => {
     const interval = setInterval(() => {
       if (roomnum) {
