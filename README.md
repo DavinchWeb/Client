@@ -30,6 +30,7 @@
 1. **저장소 클론:**
 
    ``` bash
-   git clone https://github.com/your-username/da-vinci-code-client.git
-   cd da-vinci-code-client
+   git clone https://github.com/DavinchWeb/Client.git
+   
+   cd Client
    ```
