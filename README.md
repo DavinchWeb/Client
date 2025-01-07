@@ -52,3 +52,32 @@
    ```bash
    yarn build
    ```
+## 디렉터리 구조
+```bash
+Client
+├── build/                  # (build 후 생성된 파일들)
+│   ├── asset-manifest.json
+│   ├── index.css
+│   ├── index.html
+│   └── static/
+│       ├── css/            # 빌드된 CSS 파일들
+│       ├── js/             # 빌드된 JS 파일들
+│       └── media/          # 빌드된 이미지 파일들
+├── public/                 # 공개 폴더 (index.html 및 CSS 등)
+│   ├── index.css
+│   └── index.html
+├── src/                    # 소스 코드
+│   ├── 3Dcomponents/       # 3D 컴포넌트들 (예: 게임 관련 UI)
+│   ├── App.js              # 루트 컴포넌트
+│   ├── assets/             # 이미지 및 기타 자원들
+│   ├── components/         # 재사용 가능한 UI 컴포넌트들
+│   ├── index.js            # 엔트리 포인트
+│   ├── pages/              # 페이지 컴포넌트들
+│   └── styles/             # 스타일시트 (CSS/SCSS 파일들)
+├── .gitignore              # Git에서 제외할 파일들
+├── package-lock.json       # 의존성 관리 파일
+├── package.json            # 프로젝트 설정 및 의존성
+├── README.md               # 프로젝트 설명 파일
+└── yarn.lock               # 의존성 버전 고정 파일
+
+```
