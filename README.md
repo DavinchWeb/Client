@@ -34,3 +34,21 @@
    
    cd Client
    ```
+2. **의존성 설치**
+   npm인 경우
+   ```bash
+   npm install
+   ```
+   yarn인 경우
+   ```bash
+   yarn install
+   ```
+3. **build**
+   npm인 경우
+   ```bash
+   npm run build
+   ```
+   yarn인 경우
+   ```bash
+   yarn build
+   ```
