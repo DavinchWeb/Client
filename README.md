@@ -27,14 +27,13 @@
 
 ### 설치 방법
 
-1. **저장소 클론:**
-
+1. **저장소 클론:** <br/>
    ``` bash
    git clone https://github.com/DavinchWeb/Client.git
    
    cd Client
    ```
-2. **의존성 설치**
+2. **의존성 설치** <br/>
    npm인 경우
    ```bash
    npm install
@@ -43,7 +42,7 @@
    ```bash
    yarn install
    ```
-3. **build**
+3. **build**<br/>
    npm인 경우
    ```bash
    npm run build
