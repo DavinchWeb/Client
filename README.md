@@ -1,44 +1,81 @@
-# Getting Started with Create React App
+# 다빈치 코드 게임 (프론트엔드)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 개요
 
-## Available Scripts
+이 프로젝트는 유명한 보드 게임인 **다빈치 코드**를 기반으로 한 웹 기반 멀티플레이어 퍼즐 게임입니다. 사용자는 고유한 게임 방에 입장하여 협력하고 수수께끼를 풀어 비밀을 해독하게 됩니다. 이 프로젝트는 **React**와 **React Three Fiber**(R3F)를 사용하여 게임의 프론트엔드를 구현했습니다.
 
-In the project directory, you can run:
+## 주요 기능
 
-script : yarn install -> yarn start
+- **게임 방 입장**: URL을 통해 고유한 UUID로 게임 방에 입장합니다.
+- **퍼즐 해결**: 플레이어들은 협력하여 다빈치 코드의 테마를 기반으로 한 퍼즐을 해결합니다.
+- **3D 그래픽**: React Three Fiber를 사용하여 게임 내 일부 요소에 3D 그래픽을 구현했습니다.
 
-### node js v20.16.0
+## 기술 스택
 
-### `npm start`
+- **프론트엔드**: React, React Three Fiber (R3F)
+- **상태 관리**: React Context API, useState
+- **스타일링**: CSS, Styled-components
+- **빌드 도구**: Babel
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 시작하기
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 필수 사항
 
-### `npm test`
+- Node.js 14.x 이상
+- npm 또는 yarn
+- **프로젝트 버전**: v20.16.0
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 설치 방법
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. **저장소 클론** <br/>
+   ``` bash
+   git clone https://github.com/DavinchWeb/Client.git
+   
+   cd Client
+   ```
+2. **의존성 설치** <br/>
+   npm인 경우
+   ```bash
+   npm install
+   ```
+   yarn인 경우
+   ```bash
+   yarn install
+   ```
+3. **build**<br/>
+   npm인 경우
+   ```bash
+   npm run build
+   ```
+   yarn인 경우
+   ```bash
+   yarn build
+   ```
+## 디렉터리 구조
+```bash
+Client
+├── build/                  # (build 후 생성된 파일들)
+│   ├── asset-manifest.json
+│   ├── index.css
+│   ├── index.html
+│   └── static/
+│       ├── css/
+│       ├── js/
+│       └── media/ 
+├── public/
+│   ├── index.css
+│   └── index.html
+├── src/                    # 소스 코드
+│   ├── 3Dcomponents/       # 3D 컴포넌트들
+│   ├── App.js              # 루트
+│   ├── assets/             # 이미지 및 기타 자원들
+│   ├── components/         # 컴포넌트들
+│   ├── index.js 
+│   ├── pages/              # 페이지 컴포넌트
+│   └── styles/             # 스타일시트 (CSS파일들)
+├── .gitignore  
+├── package-lock.json       # 의존성 관리 파일
+├── package.json            # 프로젝트 설정 및 의존성
+├── README.md               # 프로젝트 설명 파일
+└── yarn.lock               # 의존성 버전 고정 파일
+```
