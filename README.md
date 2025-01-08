@@ -27,7 +27,7 @@
 
 ### 설치 방법
 
-1. **저장소 클론:** <br/>
+1. **저장소 클론** <br/>
    ``` bash
    git clone https://github.com/DavinchWeb/Client.git
    
