@@ -18,9 +18,11 @@ const GameRoom = () => {
   const [reqState, setReqState] = useState("");
   const [tabledata, settabledata] = useState([]);
   const [me, setme] = useState(0);
+  const [viewPos, setViewPos] = useState(true);
+  const [cardPos, setCardPos] = useState();
 
   useEffect(() => {
-    console.log("MyCards:", MyCards);
+    console.log("MyCards:", MyCards, "cardpos", cardPos);
   }, [MyCards]);
 
   useEffect(() => {
@@ -28,8 +30,9 @@ const GameRoom = () => {
   }, [otherCards]);
 
   useEffect(() => {
-    if (stating == "none") return;
-    else if (stating == "Position of Card") {
+    if (stating == "none") {
+    } else if (stating == "Position of Card") {
+      // setViewPos(true);
     } else if (stating == "Turn Change") {
     } else if (stating == "Suspect") {
     }
@@ -48,6 +51,7 @@ const GameRoom = () => {
           setRoomData(resdata);
           settabledata(resdata.table);
           setme(resdata.userOrder);
+          setCardPos(resdata.req.cardPos);
           // setMycards(resdata.table[resdata.userOrder]);
           // setOterCards(
           //   resdata.table.filter((_, index) => index !== resdata.userOrder)
@@ -60,7 +64,6 @@ const GameRoom = () => {
   }, []); // 의존성 배열에 roomnum과 Url 추가
   const positioning = [];
   const angle = (Math.PI * 2) / tabledata.length;
-  const array = [2, 4, 6, 8];
   return (
     <div>
       {Roomdata.state === "Start" ? (
@@ -80,18 +83,22 @@ const GameRoom = () => {
               camera.lookAt(0, -2, 0); // 카메라가 (0, 0, 0)을 바라보도록 설정
             }}
           >
+            {viewPos == true ? console.log("view!") : console.log("none")}
             <ambientLight intensity={0.5} /> {/*// 조명 */}
             <directionalLight position={[5, 5, 5]} intensity={1} />
             {/* <OrbitControls /> */}
             {/* {otherCards.map((cards, idx) => {})} */}
             {tabledata.map((data, idx) => {
               return (
-                <My3DGame
-                  MyCards={data}
-                  key={idx}
-                  position={array[idx]}
-                  angle={angle * (idx - me)} // 0 1 2 me = userOrder
-                />
+                <>
+                  <My3DGame
+                    cardPos={cardPos}
+                    viewPos={viewPos}
+                    MyCards={data}
+                    key={idx}
+                    angle={angle * (idx - me)} // 0 1 2 me = userOrder
+                  />
+                </>
               );
             })}
             {/* <My3DGame MyCards={MyCards} /> */}

@@ -1,23 +1,14 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
 import { DragControls } from "@react-three/drei";
 import Card from "./Cards";
 import Ground from "./Ground";
 
-const Davinch3D = ({ MyCards, othercards, position, angle }) => {
+const Davinch3D = ({ MyCards, cardPos, angle, viewPos }) => {
   const totalCards = MyCards.length;
   const offset = (totalCards - 1) / 2; // 중앙 기준으로 카드들을 배치
   const cardRefs = useRef([]);
-
-  // const othertotal = othercards.length;
-  // const otheroffset = (othertotal - 1) / 2;
-  // const othercardRefs = useRef([]);
-
-  // useEffect(() => {
-  //   othercardRefs.current = othercardRefs.current.slice(0, othertotal); // 배열 길이 맞추기
-  // }, [othercards]);
-
   useEffect(() => {
     cardRefs.current = cardRefs.current.slice(0, MyCards.length); // 배열 길이 맞추기
   }, [MyCards]);
@@ -36,7 +27,6 @@ const Davinch3D = ({ MyCards, othercards, position, angle }) => {
               cardview={card.flip}
               cardcolor={card.color}
               cardvalue={card.value}
-              // position={[positionX, 1, position]} // 중앙을 기준으로 X축에 배치
               position={[
                 Math.cos(angle) * positionX + Math.sin(angle) * 10,
                 1,
@@ -57,6 +47,28 @@ const Davinch3D = ({ MyCards, othercards, position, angle }) => {
           </React.Fragment>
         );
       })}
+      {viewPos == true && cardPos != null && angle == 0
+        ? cardPos.map((pos, index) => {
+            const positionX = (index - offset) * 2.1;
+            //const buttoposX = -offset * 2.1 + (pos - 1) * 2.1;
+            const buttoposX = -offset * 2.1 - 1.05 + pos * 2.1;
+            const exX = buttoposX <= 0 ? 1.05 : -1.05;
+            return (
+              <mesh
+                color={"red"}
+                position={[
+                  Math.cos(angle) * buttoposX + Math.sin(angle) * 10,
+                  3,
+                  -Math.sin(angle) * buttoposX + Math.cos(angle) * 10,
+                ]}
+                rotation={[-Math.PI / 8, 0, 0]}
+              >
+                <planeGeometry args={[1, 1]}></planeGeometry>
+                <meshBasicMaterial toneMapped={false} color={"red"} />
+              </mesh>
+            );
+          })
+        : ""}
     </>
   );
 };

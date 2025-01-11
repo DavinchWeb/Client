@@ -12,6 +12,9 @@ const Startpage = () => {
   };
   return (
     <div className="main">
+      <video className="bg-main" autoPlay muted>
+        <source src="/assets/background.mp4" type="video/mp4"></source>
+      </video>
       <div className="content">
         {/* <LBcom
           to="/createRoom"
