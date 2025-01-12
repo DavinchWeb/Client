@@ -3,7 +3,7 @@ import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
 
 const Card = React.forwardRef(
-  ({ cardvalue, cardcolor, position, rotation }, ref) => {
+  ({ cardvalue, cardcolor, position, rotation, state, onClick }, ref) => {
     const texture = useLoader(
       TextureLoader,
       require(`../assets/cards/${
@@ -12,14 +12,7 @@ const Card = React.forwardRef(
     );
 
     return (
-      <mesh
-        ref={ref}
-        position={position}
-        rotation={rotation}
-        onClick={() => {
-          console.log({ cardvalue });
-        }}
-      >
+      <mesh ref={ref} position={position} rotation={rotation} onClick={onClick}>
         <planeGeometry args={[2, 3]} />
         <meshBasicMaterial map={texture} toneMapped={false} />
       </mesh>
