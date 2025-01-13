@@ -6,6 +6,7 @@ import { Canvas } from "@react-three/fiber";
 import { Html, OrbitControls } from "@react-three/drei";
 import My3DGame from "../3Dcomponents/Davinch3D";
 import Stating from "../3Dcomponents/Stating";
+import Buttons2D from "../components/Buttons2D";
 
 const GameRoom = () => {
   const locate = useLocation();
@@ -122,30 +123,11 @@ const GameRoom = () => {
                         <planeGeometry args={[1.5, 0.5]} />
                         <meshBasicMaterial color="blue" toneMapped={false} />
                       </mesh>
-                      <Html position={[0, 0, 0]}>
-                        <div className="suspect_grid">
-                          <div>조커</div>
-                          <div>0</div>
-                          <div>1</div>
-                          <div>2</div>
-                          <div>3</div>
-                          <div>4</div>
-                          <div>5</div>
-                          <div>6</div>
-                          <div>7</div>
-                          <div>8</div>
-                          <div>9</div>
-                          <div>10</div>
-                          <div>11</div>
-                          <div
-                            onClick={() => {
-                              console.log("추론하기!");
-                            }}
-                          >
-                            추론하기!
-                          </div>
-                        </div>
-                      </Html>
+                      <Buttons2D
+                        RN={roomnum}
+                        cardUser={selectedCard.gameidx}
+                        cardNum={selectedCard.index}
+                      ></Buttons2D>
                     </>
                   ) : (
                     ""
