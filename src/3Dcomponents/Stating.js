@@ -17,7 +17,7 @@ const Stating = ({ state, Scontinue }) => {
     }
   }, [state]);
   return (
-    <Text position={[0, 7, 0]} color="black" fontSize={1}>
+    <Text position={[0, 9, 0]} color="black" fontSize={1}>
       {ST}
     </Text>
   );

@@ -8,6 +8,7 @@ import My3DGame from "../3Dcomponents/Davinch3D";
 import Stating from "../3Dcomponents/Stating";
 import Buttons2D from "../components/Buttons2D";
 import DoorDie from "../3Dcomponents/DoorDie";
+import Card from "../3Dcomponents/Cards";
 
 const GameRoom = () => {
   const locate = useLocation();
@@ -25,6 +26,7 @@ const GameRoom = () => {
   const [cardPos, setCardPos] = useState();
   const [suspect, setSuspect] = useState(false);
   const [seeContinue, setSeeContinue] = useState(false);
+  const [newCard, setNewCard] = useState();
 
   useEffect(() => {
     console.log("MyCards:", MyCards, "cardpos", cardPos);
@@ -65,6 +67,7 @@ const GameRoom = () => {
           setRoomData(resdata);
           settabledata(resdata.table);
           setCardPos(resdata.req.cardPos);
+          setNewCard(resdata.req.newCard);
         })
         .catch((error) => {
           console.error("Error fetching room data:", error);
@@ -122,6 +125,7 @@ const GameRoom = () => {
                     num={roomnum}
                     onCardPositionUpdate={handleCardClick}
                     whatme={idx == me}
+                    headcount={tabledata.length}
                   />
                   {selectedCard &&
                   selectedCard.gameidx !== me &&
@@ -148,6 +152,13 @@ const GameRoom = () => {
                     <DoorDie RN={roomnum} reset={setContinue}></DoorDie>
                   ) : (
                     ""
+                  )}
+                  {stating == "Position of Card" && (
+                    <Card
+                      position={[0, 2, 5]}
+                      cardvalue={newCard.value}
+                      cardcolor={newCard.color}
+                    ></Card>
                   )}
                 </>
               );

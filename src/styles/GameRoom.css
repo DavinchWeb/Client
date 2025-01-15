@@ -65,23 +65,29 @@
 }
 
 .Keep_going:hover {
-  background-color: gray;
+  background-color: lightgray;
 }
 
 .pass_myturn:hover {
-  background-color: gray;
+  background-color: lightgray;
 }
 
 .DorDie {
+  display: flex;
+  flex-direction: column;
   background-color: white;
   border-radius: 5%;
   width: 125px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
 }
 
 .DorDie span {
   text-align: center;
-  align-items: center;
-  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5em;
 }
 
 .DorDie_box {

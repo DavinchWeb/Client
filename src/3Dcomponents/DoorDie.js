@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 const DoorDie = ({ RN, reset }) => {
   return (
-    <Html position={[-4, 0, 0]}>
+    <Html position={[-5, 0, 0]}>
       <div className="DorDie_box">
         <div
           className="Keep_going DorDie"
@@ -14,7 +14,8 @@ const DoorDie = ({ RN, reset }) => {
             reset();
           }}
         >
-          <span>계속 맞추기!</span>
+          <span>계속</span>
+          <span>맞추기!</span>
         </div>
         <div
           className="pass_myturn DorDie"

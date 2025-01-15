@@ -13,6 +13,7 @@ const Davinch3D = ({
   onCardPositionUpdate,
   gameidx,
   whatme,
+  headcount,
 }) => {
   const totalCards = MyCards.length;
   const offset = (totalCards - 1) / 2;
@@ -26,11 +27,21 @@ const Davinch3D = ({
     <>
       {MyCards.map((card, index) => {
         const positionX = (index - offset) * 2.1;
+        const myRotation = card.flip
+          ? [-Math.PI / 2, 0, 0]
+          : [-Math.PI / 8, 0, 0];
+
+        const opponentRotation = card.flip
+          ? [-Math.PI / 2, angle + Math.PI * 2, 0] // 뒤집힘
+          : [0, angle + Math.PI, 0]; // 안뒤집힘
+
         const position = [
           Math.cos(angle) * positionX + Math.sin(angle) * 10,
-          1,
+          card.flip ? 0 : 1,
           whatme == true
-            ? -Math.sin(angle) * positionX + Math.cos(angle) * 13
+            ? card.flip == true
+              ? -Math.sin(angle) * positionX + Math.cos(angle) * 12
+              : -Math.sin(angle) * positionX + Math.cos(angle) * 13
             : card.flip == true // 까짐
             ? -Math.sin(angle) * positionX + Math.cos(angle) * 6
             : -Math.sin(angle) * positionX + Math.cos(angle) * 13, // ㄴㄴ
@@ -45,9 +56,11 @@ const Davinch3D = ({
               cardvalue={card.value}
               position={position}
               rotation={
-                card.flip
-                  ? [-Math.PI / 2 + Math.PI / 8, 0, whatme ? 0 : Math.PI]
-                  : [-Math.PI / 8, 0, 0]
+                whatme ? myRotation : opponentRotation
+                // card.flip ? Math.PI / 2 : whatme ? -Math.PI / 8 : 0,
+                // whatme ? 0 : angle + Math.PI,
+                // card.flip ? Math.PI : 0,
+                // 나면 0 아니면 Math.PI 180 도
               }
               ref={(el) => {
                 if (el) cardRefs.current[index] = el;

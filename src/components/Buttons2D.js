@@ -6,7 +6,7 @@ const Buttons2D = ({ RN, cardUser, cardNum, reset, resetCard }) => {
   const numbers = Array.from({ length: 12 }, (_, i) => i);
   const [selectedbutton, setSelcetedButton] = useState();
   return (
-    <Html position={[-7, 0, 0]} className="suspect_main_box">
+    <Html position={[-11, 0, 0]} className="suspect_main_box">
       <div className="suspect_grid">
         <div
           className="gird_box"
