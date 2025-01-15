@@ -3,7 +3,10 @@ import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
 
 const Card = React.forwardRef(
-  ({ cardvalue, cardcolor, position, rotation, state, onClick }, ref) => {
+  (
+    { cardvalue, cardcolor, position, rotation, state, onClick, cardview },
+    ref
+  ) => {
     const texture = useLoader(
       TextureLoader,
       require(`../assets/cards/${

@@ -2,11 +2,11 @@ import { Html } from "@react-three/drei";
 import axios from "axios";
 import React, { useState } from "react";
 
-const Buttons2D = ({ RN, cardUser, cardNum }) => {
+const Buttons2D = ({ RN, cardUser, cardNum, reset, resetCard }) => {
   const numbers = Array.from({ length: 12 }, (_, i) => i);
   const [selectedbutton, setSelcetedButton] = useState();
   return (
-    <Html position={[-3, 0, 0]} className="suspect_main_box">
+    <Html position={[-7, 0, 0]} className="suspect_main_box">
       <div className="suspect_grid">
         <div
           className="gird_box"
@@ -43,6 +43,8 @@ const Buttons2D = ({ RN, cardUser, cardNum }) => {
               cardValue: Number(selectedbutton),
             };
             axios.post("/game/suspect", data);
+            reset();
+            resetCard();
           }}
         >
           <span>추론!</span>

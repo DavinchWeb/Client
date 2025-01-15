@@ -63,3 +63,30 @@
   background-color: black;
   color: #fff;
 }
+
+.Keep_going:hover {
+  background-color: gray;
+}
+
+.pass_myturn:hover {
+  background-color: gray;
+}
+
+.DorDie {
+  background-color: white;
+  border-radius: 5%;
+  width: 125px;
+}
+
+.DorDie span {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.DorDie_box {
+  width: 250px;
+  height: 200px;
+  display: flex;
+  gap: 8px;
+}

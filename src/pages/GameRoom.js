@@ -7,6 +7,7 @@ import { Html, OrbitControls } from "@react-three/drei";
 import My3DGame from "../3Dcomponents/Davinch3D";
 import Stating from "../3Dcomponents/Stating";
 import Buttons2D from "../components/Buttons2D";
+import DoorDie from "../3Dcomponents/DoorDie";
 
 const GameRoom = () => {
   const locate = useLocation();
@@ -23,6 +24,7 @@ const GameRoom = () => {
   const [viewPos, setViewPos] = useState(true);
   const [cardPos, setCardPos] = useState();
   const [suspect, setSuspect] = useState(false);
+  const [seeContinue, setSeeContinue] = useState(false);
 
   useEffect(() => {
     console.log("MyCards:", MyCards, "cardpos", cardPos);
@@ -38,8 +40,14 @@ const GameRoom = () => {
     } else if (stating == "Turn Change") {
     } else if (stating == "Suspect") {
       setSuspect(true);
+    } else if (stating == "Continue") {
+      setSeeContinue(true);
     }
   }, [stating]);
+
+  const setContinue = () => {
+    setSeeContinue(false);
+  };
 
   useEffect(() => {
     if (isPollingStarted.current) return; // 이미 폴링 중이면 실행하지 않음
@@ -53,15 +61,10 @@ const GameRoom = () => {
             setme(resdata.userOrder);
           }
           setReqState(resdata.state);
-          setState(resdata.req.state); //
+          setState(resdata.req.state);
           setRoomData(resdata);
           settabledata(resdata.table);
-          // setme(resdata.userOrder);
           setCardPos(resdata.req.cardPos);
-          // setMycards(resdata.table[resdata.userOrder]);
-          // setOterCards(
-          //   resdata.table.filter((_, index) => index !== resdata.userOrder)
-          // );
         })
         .catch((error) => {
           console.error("Error fetching room data:", error);
@@ -71,14 +74,15 @@ const GameRoom = () => {
   const angle = (Math.PI * 2) / tabledata.length;
 
   const [selectedCard, setSelectedCard] = useState(); // 클릭된 카드 상태
-  const handleCardClick = (index, position, gameidx) => {
-    setSelectedCard({ index, position, gameidx }); // 클릭된 카드의 인덱스와 위치 저장
+  const resetCard = () => {
+    setSelectedCard();
+  };
+  const handleCardClick = (index, position, gameidx, cardFilp) => {
+    setSelectedCard({ index, position, gameidx, cardFilp }); // 클릭된 카드의 인덱스와 위치 저장
   };
   const gameRefs = useRef([]); // My3DGame refs를 저장하는 배열
 
   useEffect(() => {
-    console.log("Table Data:", tabledata);
-
     // 각 My3DGame의 cardRefs에 접근
     gameRefs.current.forEach((gameRef, idx) => {
       if (gameRef) {
@@ -86,20 +90,21 @@ const GameRoom = () => {
       }
     });
   }, [tabledata]);
-
+  const setnothing = () => {
+    setState("");
+  };
   return (
     <div>
       {Roomdata != "Game End" ? (
         <div>
           <Canvas
             style={{ height: "100vh", width: "100%" }}
-            camera={{ position: [0, 8, 14], fov: 100 }}
+            camera={{ position: [0, 9, 13.5], fov: 110 }}
             onCreated={({ camera }) => {
-              camera.lookAt(0, -3, 0); // 카메라설정
+              camera.lookAt(0, -1.5, 0); // 카메라설정
             }}
           >
-            <Stating state={stating}></Stating>
-            {viewPos == true ? console.log("view!") : console.log("none")}
+            <Stating state={stating} Scontinue={seeContinue}></Stating>
             <ambientLight intensity={0.5} />
             <directionalLight position={[5, 5, 5]} intensity={1} />
             {tabledata.map((data, idx) => {
@@ -113,11 +118,16 @@ const GameRoom = () => {
                     cardPos={cardPos}
                     viewPos={viewPos}
                     MyCards={data}
-                    angle={angle * (idx - me)} // 0 1 2 me = userOrder
+                    angle={angle * (idx - me)}
                     num={roomnum}
                     onCardPositionUpdate={handleCardClick}
+                    whatme={idx == me}
                   />
-                  {selectedCard && selectedCard.gameidx !== me ? (
+                  {selectedCard &&
+                  selectedCard.gameidx !== me &&
+                  (stating == "Suspect" || reqState == "Suspect") &&
+                  selectedCard.cardFilp == false &&
+                  stating != "None" ? (
                     <>
                       <mesh position={selectedCard.position}>
                         <planeGeometry args={[1.5, 0.5]} />
@@ -127,8 +137,15 @@ const GameRoom = () => {
                         RN={roomnum}
                         cardUser={selectedCard.gameidx}
                         cardNum={selectedCard.index}
+                        reset={setnothing}
+                        resetCard={resetCard}
                       ></Buttons2D>
                     </>
+                  ) : (
+                    ""
+                  )}
+                  {stating == "Continue" && seeContinue ? (
+                    <DoorDie RN={roomnum} reset={setContinue}></DoorDie>
                   ) : (
                     ""
                   )}
