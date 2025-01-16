@@ -71,7 +71,7 @@ const GameRoom = () => {
   };
 
   useEffect(() => {
-    // 각 My3DGame의 cardRefs에 접근
+    // 각 My3DGame의 cardRefs
     gameRefs.current.forEach((gameRef, idx) => {
       if (gameRef) {
         console.log(`Player ${idx} Card Refs:`, gameRef.getCardRefs());
@@ -170,9 +170,6 @@ const GameRoom = () => {
                     reqState={reqState}
                     idx={idx}
                   ></UserStating>
-                  {/* {reqState == "Suspect" && (
-                    
-                  )} */}
                 </>
               );
             })}

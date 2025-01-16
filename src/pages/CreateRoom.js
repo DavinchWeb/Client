@@ -3,7 +3,7 @@ import "../styles/createRoom.css";
 import axios from "axios";
 
 const CreateRoom = () => {
-  const [numPeople, setNumPeople] = useState(2); // 초기값: 2명
+  const [numPeople, setNumPeople] = useState(2);
   const [visible, setVisible] = useState(true);
   const [link, setLink] = useState("");
   const [RoomNum, setRoomNum] = useState();
@@ -24,16 +24,12 @@ const CreateRoom = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(`선택된 인원: ${numPeople}`);
     setVisible(false);
-    console.log(`선택된 인원: ${numPeople}`);
 
     try {
       const response = await axios.post("/create", {
         numPeople,
       });
-
-      console.log(response.data.RoomNum);
       setRoomNum(response.data.RoomNum);
     } catch {
       console.log("오류");

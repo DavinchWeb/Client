@@ -16,11 +16,6 @@ const Startpage = () => {
         <source src="/assets/background.mp4" type="video/mp4"></source>
       </video>
       <div className="content">
-        {/* <LBcom
-          to="/createRoom"
-          title={"Start!"}
-          className={"start button"}
-        ></LBcom> */}
         <NBcom
           onClick={toggleVisible}
           title={"RULE"}

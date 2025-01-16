@@ -23,20 +23,10 @@ const SelectingRoom = () => {
       .then((response) => {
         const parsedata = JSON.parse(response.data);
         if (parsedata && parsedata.roomNum) {
-          // data를 받아오면
           navigate(`/room?num=${parsedata.roomNum}`);
         } else {
           console.error("No link received in response");
         }
-        // if (response.data && response.data.roomNum) {
-        //   // data를 받아오면
-        //   console.log("Game room link:", response.data.roomNum);
-        //   navigate(`/room?num=${response.data.roomNum}`, {
-        //     state: { roomnum: response.data.roomNum },
-        //   });
-        // } else {
-        //   console.error("No link received in response");
-        // }
       })
       .catch((error) => {
         console.error("Error creating game room:", error);

@@ -59,7 +59,6 @@ const WaitRoom = () => {
     const data = { roomNum: Number(roomnum) }; // wait폴링
     const interval = setInterval(() => {
       axios.post(Url, data).then((res) => {
-        console.log(res.data.ready);
         setUserState(res.data.currUserNum);
         if (res.data.ready) {
           clearInterval(interval); // 게임 시작 시 Interval 해제
