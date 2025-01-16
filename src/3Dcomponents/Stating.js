@@ -10,7 +10,7 @@ const Stating = ({ state, Scontinue }) => {
       setST("카드 놓을 곳을 정하세요");
     } else if (state === "Turn Change") {
       setST("Turn Change!");
-    } else if (Scontinue === "Suspect") {
+    } else if (Scontinue) {
       setST("선택하세요!");
     } else if (state === "Suspect") {
       setST("추론하세요!");

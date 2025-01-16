@@ -12,6 +12,7 @@ const Card = React.forwardRef(
       state,
       onClick,
       cardview,
+      arg = [2, 3],
     },
     ref
   ) => {
@@ -29,7 +30,7 @@ const Card = React.forwardRef(
         rotation={Frotation}
         onClick={onClick}
       >
-        <planeGeometry args={[2, 3]} />
+        <planeGeometry args={arg} />
         <meshBasicMaterial map={texture} toneMapped={false} />
       </mesh>
     );

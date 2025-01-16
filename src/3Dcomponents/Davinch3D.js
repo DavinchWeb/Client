@@ -7,7 +7,6 @@ const Davinch3D = ({
   MyCards,
   cardPos,
   angle,
-  viewPos,
   num,
   state,
   onCardPositionUpdate,
@@ -55,13 +54,8 @@ const Davinch3D = ({
               cardcolor={card.color}
               cardvalue={card.value}
               position={position}
-              rotation={
-                whatme ? myRotation : opponentRotation
-                // card.flip ? Math.PI / 2 : whatme ? -Math.PI / 8 : 0,
-                // whatme ? 0 : angle + Math.PI,
-                // card.flip ? Math.PI : 0,
-                // 나면 0 아니면 Math.PI 180 도
-              }
+              rotation={whatme ? myRotation : opponentRotation}
+              arg={whatme ? [2, 3] : [2, 3]}
               ref={(el) => {
                 if (el) cardRefs.current[index] = el;
               }}
@@ -77,7 +71,7 @@ const Davinch3D = ({
           </React.Fragment>
         );
       })}
-      {viewPos == true && cardPos != null && angle == 0
+      {cardPos != null && angle == 0
         ? cardPos.map((pos, index) => {
             const buttoposX = -offset * 2.1 - 1.05 + pos * 2.1;
             const data = {
